@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище UpdateDataModelContainer" CdmEntityContainer="UpdateDataEntities">
+    <EntitySetMapping Name="disc">
+      <EntityTypeMapping TypeName="UpdateDataModel.disc">
+        <MappingFragment StoreEntitySet="disc">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="discipline" ColumnName="discipline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="litr">
+      <EntityTypeMapping TypeName="UpdateDataModel.litr">
+        <MappingFragment StoreEntitySet="litr">
+          <ScalarProperty Name="discipline" ColumnName="discipline" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

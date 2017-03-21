@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SortList.Models.litr>
+
+<table>
+    <tr id="default">
+        <th>
+            @Html.DisplayNameFor(model => model.disc.discipline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="@item.disc.discipline">
+        <td>
+            @Html.DisplayFor(modelItem => item.disc.discipline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UpdateDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="UpdateDataEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="disc" EntityType="UpdateDataModel.disc" />
+    <EntitySet Name="litr" EntityType="UpdateDataModel.litr" />
+    <AssociationSet Name="FK_litr_disc" Association="UpdateDataModel.FK_litr_disc">
+      <End Role="disc" EntitySet="disc" />
+      <End Role="litr" EntitySet="litr" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="disc">
+    <Key>
+      <PropertyRef Name="discipline" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="discipline" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="litr" Relationship="UpdateDataModel.FK_litr_disc" FromRole="disc" ToRole="litr" />
+  </EntityType>
+  <EntityType Name="litr">
+    <Key>
+      <PropertyRef Name="discipline" />
+    </Key>
+    <Property Name="discipline" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="date" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="disc" Relationship="UpdateDataModel.FK_litr_disc" FromRole="litr" ToRole="disc" />
+  </EntityType>
+  <Association Name="FK_litr_disc">
+    <End Role="disc" Type="UpdateDataModel.disc" Multiplicity="1" />
+    <End Role="litr" Type="UpdateDataModel.litr" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="disc">
+        <PropertyRef Name="discipline" />
+      </Principal>
+      <Dependent Role="litr">
+        <PropertyRef Name="discipline" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

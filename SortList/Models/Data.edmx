@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище UpdateDataModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Хранилище UpdateDataModelContainer">
+          <EntitySet Name="disc" EntityType="Хранилище UpdateDataModel.disc" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="litr" EntityType="Хранилище UpdateDataModel.litr" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_litr_disc" Association="Хранилище UpdateDataModel.FK_litr_disc">
+            <End Role="disc" EntitySet="disc" />
+            <End Role="litr" EntitySet="litr" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="disc">
+          <Key>
+            <PropertyRef Name="discipline" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="discipline" Type="varchar" Nullable="false" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="litr">
+          <Key>
+            <PropertyRef Name="discipline" />
+          </Key>
+          <Property Name="discipline" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="name" Type="varchar(max)" Nullable="false" />
+          <Property Name="date" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="40" />
+        </EntityType>
+        <Association Name="FK_litr_disc">
+          <End Role="disc" Type="Хранилище UpdateDataModel.disc" Multiplicity="1" />
+          <End Role="litr" Type="Хранилище UpdateDataModel.litr" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="disc">
+              <PropertyRef Name="discipline" />
+            </Principal>
+            <Dependent Role="litr">
+              <PropertyRef Name="discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UpdateDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UpdateDataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="disc" EntityType="UpdateDataModel.disc" />
+          <EntitySet Name="litr" EntityType="UpdateDataModel.litr" />
+          <AssociationSet Name="FK_litr_disc" Association="UpdateDataModel.FK_litr_disc">
+            <End Role="disc" EntitySet="disc" />
+            <End Role="litr" EntitySet="litr" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="disc">
+          <Key>
+            <PropertyRef Name="discipline" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="discipline" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="litr" Relationship="UpdateDataModel.FK_litr_disc" FromRole="disc" ToRole="litr" />
+        </EntityType>
+        <EntityType Name="litr">
+          <Key>
+            <PropertyRef Name="discipline" />
+          </Key>
+          <Property Name="discipline" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="disc" Relationship="UpdateDataModel.FK_litr_disc" FromRole="litr" ToRole="disc" />
+        </EntityType>
+        <Association Name="FK_litr_disc">
+          <End Role="disc" Type="UpdateDataModel.disc" Multiplicity="1" />
+          <End Role="litr" Type="UpdateDataModel.litr" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="disc">
+              <PropertyRef Name="discipline" />
+            </Principal>
+            <Dependent Role="litr">
+              <PropertyRef Name="discipline" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UpdateDataModelContainer" CdmEntityContainer="UpdateDataEntities">
+          <EntitySetMapping Name="disc">
+            <EntityTypeMapping TypeName="UpdateDataModel.disc">
+              <MappingFragment StoreEntitySet="disc">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="discipline" ColumnName="discipline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="litr">
+            <EntityTypeMapping TypeName="UpdateDataModel.litr">
+              <MappingFragment StoreEntitySet="litr">
+                <ScalarProperty Name="discipline" ColumnName="discipline" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

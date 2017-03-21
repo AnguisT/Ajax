@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SortList.Models.litr>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.DropDownList("Discipline", ViewBag.Disc as SelectList, new { discipline = "Дисциплина" })
+
+@Html.Partial("GetLibrary")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $(function () {
+            $("#Discipline").change(function () {
+                var disc = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "/Library/GetLibrary",
+                    data: { discipline: $(this).val() },
+                    success: function (result) {
+                        $("table").replaceWith(result);
+                    },
+                    error: function (xhr, status, error, result) {
+                        alert(error);
+                    }
+                })
+            })
+        })
+    </script>
+}
